@@ -24,7 +24,7 @@ Try `go run tutorial/tutorial.go`.
 2. In `util/util.go`, you can change the `DBEntrySize` constant to change the entry size, e.g. 8bytes, 32bytes, 256bytes.
 
 The default is `N=33554432` and `DBEntrySize=8`, which is a 256MB DB.
-For another example, setting `N=134217728`  and `DBEntrySize=16` will generate an 2GB database.
+For another example, setting `N=134217728`  and `DBEntrySize=16` will generate a 2GB database.
 
 ### Developing
 1. The server implementation is in `server/server.go`.
