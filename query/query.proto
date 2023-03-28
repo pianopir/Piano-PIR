@@ -1,0 +1,74 @@
+syntax = "proto3";
+
+package query;
+
+option go_package = "example.com/query";
+
+service QueryService {
+    //rpc QueryDatabase (SimpleQuery) returns (QueryResponse) {}
+    //rpc SingleQuery (singleQuery) returns (CuckooBucketResponse) {}
+    rpc PlaintextQuery (PlaintextQueryMsg)  returns (PlaintextResponse) {}
+    rpc FullSetQuery (FullSetQueryMsg) returns (FullSetResponse) {}
+    rpc PunctSetQuery (PunctSetQueryMsg) returns (PunctSetResponse) {}
+    //rpc BatchedFullSetQuery (stream FullSetQueryMsg) returns (stream FullSetResponse) {}
+    rpc BatchedFullSetQuery (BatchedFullSetQueryMsg) returns (BatchedFullSetResponse) {}
+    rpc FetchFullDB (FetchFullDBMsg) returns (stream DBChunk) {}
+    /*
+    rpc GetDBInfo (DBInfoQuery) returns (DBInfoResponse) {}
+    */
+}
+
+message PlaintextQueryMsg {
+    uint64 Index = 1;
+}
+
+message PlaintextResponse {
+    //uint32 Index = 1;
+    repeated uint64 Val = 1;
+}
+
+message FullSetQueryMsg {
+    //uint64 PRFKey = 1;
+    bytes PRFKey = 1;
+}
+
+message FullSetResponse {
+    //uint32 PRFKey = 1;
+    repeated uint64 Val = 1;
+}
+
+message BatchedFullSetQueryMsg {
+    uint64 QueryNum = 1;
+    repeated FullSetQueryMsg Queries = 2;
+}
+
+message BatchedFullSetResponse {
+    uint64 ResponseNum = 1;
+    repeated FullSetResponse Responses = 2;
+}
+
+message PunctSetQueryMsg {
+    uint64 PunctSetSize = 1;
+    repeated uint64 Indices = 2;
+}
+
+message PunctSetResponse {
+    uint64 ReturnSize = 1;
+    repeated uint64 Guesses = 2;
+    // For every DBEntrySize/8 uint64s, we have one complete guesses
+}
+
+message FetchFullDBMsg {
+    uint64 Dummy = 1;
+}
+
+message DBChunk {
+    uint64 ChunkId = 1;
+    uint64 ChunkSize = 2;
+    repeated uint64 Chunk = 3;
+    // For every DBEntrySize/8 uint64s, we have one complete guesses
+}
+
+//message DBInfoResponse {
+//    uint64 Size = 1;
+//}
