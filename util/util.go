@@ -191,7 +191,7 @@ func PRFEval3(key *PrfKey128, x uint64) uint64 {
 	return PRFEval2(&key2, x)
 }
 
-// PRF using AES128. Same as Checklist.
+// PRF using AES128. Same as Checklist, https://github.com/dimakogan/checklist/tree/master/modules/dpf-go/dpf.
 func PRFEval4(key *PrfKey128, x uint64) uint64 {
 	var longKey = make([]uint32, 11*4)
 	expandKeyAsm(&key[0], &longKey[0])
