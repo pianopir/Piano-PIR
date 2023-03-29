@@ -230,10 +230,10 @@ func ReadConfigInfo() (uint64, uint64) {
 	var DBSize uint64
 	var DBSeed uint64
 
-	if DBSize, err = strconv.ParseUint(split[0], 10, 32); err != nil {
+	if DBSize, err = strconv.ParseUint(split[0], 10, 64); err != nil {
 		log.Fatal(err)
 	}
-	if DBSeed, err = strconv.ParseUint(split[1], 10, 32); err != nil {
+	if DBSeed, err = strconv.ParseUint(split[1], 10, 64); err != nil {
 		log.Fatal(err)
 	}
 
