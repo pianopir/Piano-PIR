@@ -1,3 +1,6 @@
+### Warning:  This is only a temporary repo. To see the updated implementation, see https://github.com/wuwuz/Piano-PIR.
+
+
 # Piano: Extremely Simple, Single-server PIR with Sublinear Server Computation
 
 This is a prototype implementation of the Piano private information retrieval(PIR) algorithm that allows a client to access a database without the server knowing the querying index.
